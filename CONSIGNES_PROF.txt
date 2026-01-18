@@ -1,0 +1,36 @@
+Mini-projet : Classification de chiffres manuscrits avec Streamlit
+Due 18 January 2026 23:59
+Instructions
+1.     Objectifs du projet 
+Développer une application web interactive permettant à un utilisateur de dessiner un chiffre manuscrit (0–9) et d’obtenir la prédiction du chiffre à l’aide d’un modèle de Machine Learning.
+
+Objectifs pédagogiques :
+- Comprendre la chaîne complète d’un projet ML
+- Implémenter un réseau de neurones simple
+- Utiliser Streamlit pour créer une interface web
+- Traiter une image dessinée par l’utilisateur 
+2.     Fonctionnalités attendues 
+Interface Streamlit avec zone de dessin interactive, boutons Effacer et Prédire, affichage du chiffre prédit et de la probabilité.
+
+Traitement de l’image : conversion en niveaux de gris, redimensionnement en 20x20, normalisation des pixels.
+
+Modèle : réseau de neurones entraîné. 
+3.     Données 
+Dataset du TP3, TP4
+Sauvegarde du modèle entraîné 
+4.     Technologies utilisées 
+- Python 3
+- Streamlit
+- streamlit-drawable-canvas
+- Matplotlib 
+5.     Architecture du projet 
+app.py : application Streamlit
+model.py : définition du modèle
+train.py : entraînement
+preprocess.py : traitement des images
+model_weights.npz : modèle entraîné 
+6.     Livrables 
+- Code source complet
+- Application Streamlit fonctionnelle
+- Modèle entraîné
+- Rapport court décrivant la démarche
