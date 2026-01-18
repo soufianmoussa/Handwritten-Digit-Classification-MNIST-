@@ -149,27 +149,27 @@ def train_model():
     # Actually, pure python nn with 60k is slow.
     # Let's use 20,000 samples and augment them once.
     
-    print("Subsampling for performance (Taking 5,000 samples)...")
-    indices = np.random.choice(m_train, 5000, replace=False)
+    print("Subsampling for performance (Taking 15,000 samples)...")
+    indices = np.random.choice(m_train, 15000, replace=False)
     X_train = X_train[indices]
     y_train = y_train[indices]
     
     # Augment
-    X_train, y_train = augment_data(X_train, y_train, num_copies=0) # Total 5k
+    X_train, y_train = augment_data(X_train, y_train, num_copies=0) # Total 15k
     
     input_layer_size = 784
-    hidden_layer_size = 25
+    hidden_layer_size = 50  # Increased from 25 for better capacity
     num_labels = 10
     
     print("Initializing Weights...")
     # Use standard Glorot/Xavier-like initialization for sigmoid: sqrt(6)/sqrt(L_in + L_out)
-    # sqrt(6)/sqrt(784+25) approx 0.08. Let's use 0.07 to be safe.
-    initial_Theta1 = randInitializeWeights(input_layer_size, hidden_layer_size, epsilon_init=0.07)
-    initial_Theta2 = randInitializeWeights(hidden_layer_size, num_labels, epsilon_init=0.12) # 25->10 is small, 0.12 is fine
+    # sqrt(6)/sqrt(784+50) approx 0.08. 
+    initial_Theta1 = randInitializeWeights(input_layer_size, hidden_layer_size, epsilon_init=0.08)
+    initial_Theta2 = randInitializeWeights(hidden_layer_size, num_labels, epsilon_init=0.12)
     initial_nn_params = np.concatenate([initial_Theta1.ravel(), initial_Theta2.ravel()])
     
     print(f"Training on {X_train.shape[0]} samples with 784 inputs...")
-    options = {'maxiter': 50, 'disp': True} # Balanced iterations 
+    options = {'maxiter': 100, 'disp': True} # Increased iterations for deep convergence 
     lambda_ = 1.0 
     
     costFunction = lambda p: nnCostFunction(p, input_layer_size, hidden_layer_size, num_labels, X_train, y_train, lambda_)
