@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+*.npz
+!model_weights.npz
+.ipynb_checkpoints/
+Data/*.gz
+Data/*.mat
